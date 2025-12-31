@@ -1,0 +1,69 @@
+server:
+  bind:
+    host: 0.0.0.0
+    port: 80
+  url: http://172.25.212.151:5050
+  languages:
+    - en-US
+  limits:
+    default_items: 10
+    maximum_items: 1000
+  map:
+    url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+
+logging:
+  level: INFO
+
+metadata:
+  identification:
+    title:
+      en: pygeoapi demo
+    description:
+      en: pygeoapi with PostGIS
+    keywords:
+      en:
+        - geospatial
+        - ogc
+        - api
+    terms_of_service: https://example.com
+    url: https://example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  provider:
+    name: pygeoapi Demo
+    url: https://example.com
+  contact:
+    name: Admin
+    email: admin@example.com
+
+resources:
+  countries:
+    type: collection
+    title: Countries
+    description: Natural Earth Admin 0 Countries
+    # editable: true
+    keywords:
+      - countries
+      - boundaries
+      - natural earth
+    extents:
+      spatial:
+        bbox: [-180, -90, 180, 90]
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+      - type: feature
+        name: PostgreSQL
+        editable: true
+        data:
+          host: host.docker.internal
+          port: 15433
+          # dbname: pygeoapi
+          dbname: point_river_ward(1)
+          user: postgres
+          password: postgres
+          search_path: [public]
+        table: point_river_ward(1)
+        id_field: gid
+        geom_field: geom
