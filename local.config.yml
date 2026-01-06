@@ -67,3 +67,18 @@ resources:
         table: point_river_ward(1)
         id_field: gid
         geom_field: geom
+
+  titanic:
+    type: collection
+    title: Titanic Dataset
+    description: Titanic passenger data from CSV file
+    keywords:
+      - titanic
+      - csv
+      - passengers
+    providers:
+      - type: feature
+        name: CSV
+        data:
+          file: /home/linh/project/pygeoapi/data/archive/titanic.csv
+        id_field: PassengerId
